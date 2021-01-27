@@ -2,6 +2,7 @@ package com.lablogic.store.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="products")
@@ -15,6 +16,9 @@ public class Product implements Serializable
     private String name;
 
     private float cost;
+
+    @Column(columnDefinition = "timestamp default current_timestamp")
+    private LocalDateTime dateTime;
 
     public long getId() {
         return id;
@@ -38,5 +42,13 @@ public class Product implements Serializable
 
     public void setCost(float cost) {
         this.cost = cost;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 }
