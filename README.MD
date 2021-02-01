@@ -1,1 +1,3 @@
-Antes de iniciar a aplicação, renomeie o arquivo "base_application.properties" para "application.properties" no caminho "src/main/resources/" e preencha os valores para configurar o banco de dados
+How-To:
+<br/>
+Start: Use terminal to run jar. Ex.: java -jar filename.jar {username} {password}
