@@ -3,8 +3,11 @@ package com.lablogic.store.resource;
 import com.lablogic.store.model.Product;
 import com.lablogic.store.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -14,16 +17,17 @@ public class ProductResource
     @Autowired
     ProductRepository productRepository;
 
-    @GetMapping("/product")
+    @GetMapping("/products")
     public List<Product> getAll()
     {
         return productRepository.findAll();
     }
 
-    @GetMapping("/product/{id}")
-    public Product getOne(@PathVariable("id") long id)
+    @GetMapping("/product")
+    public List<Product> getOne(@RequestParam("code") String code)
     {
-        return productRepository.findById(id);
+        List<Product> products = productRepository.findByCode(code);
+        return products;
     }
 
     @PostMapping("/product")
@@ -34,9 +38,9 @@ public class ProductResource
     }
 
     @DeleteMapping("/product")
-    public void delete(@RequestBody Product product)
+    public void delete(@RequestParam("id") long id)
     {
-        productRepository.delete(product);
+        productRepository.delete(productRepository.findById(id));
     }
 
     @PutMapping("/product")

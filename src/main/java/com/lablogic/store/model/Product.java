@@ -9,15 +9,18 @@ import java.time.LocalDateTime;
 public class Product implements Serializable
 {
     @Id
-    @GeneratedValue()
+    @GeneratedValue
     private long id;
+
+    @Column(unique = true, columnDefinition = "varchar(13) default ''")
+    private String code;
 
     @Column(columnDefinition = "varchar(30)")
     private String name;
 
     private float cost;
 
-    @Column(columnDefinition = "timestamp default current_timestamp")
+    @Column(columnDefinition = "timestamp default current_timestamp", insertable = false)
     private LocalDateTime dateTime;
 
     public long getId() {
@@ -50,5 +53,13 @@ public class Product implements Serializable
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
