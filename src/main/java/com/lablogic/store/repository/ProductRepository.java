@@ -14,5 +14,5 @@ public interface ProductRepository extends JpaRepository<Product, Long>
     Product findById(long id);
 
     @Query(value = "SELECT * FROM products WHERE code=?", nativeQuery = true)
-    List<Product> findByCode(String code);
+    Product findByCode(String code);
 }
